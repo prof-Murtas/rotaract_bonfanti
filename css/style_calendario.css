@@ -1,0 +1,298 @@
+/* =========================
+   ROTARACT TRENTO - CALENDARIO (VERSIONE MIGLIORATA)
+   ========================= */
+
+/* VARIABILI GLOBALI */
+:root {
+  --rotaract-pink: #E2457C;
+  --dark: #040F0F;
+  --white: #FCFFFC;
+  --border: #ddd;
+}
+
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* STRUTTURA DI BASE */
+html, body {
+  height: 100%;
+  font-family: "Poppins", sans-serif;
+  color: var(--dark);
+  background-color: var(--white);
+  overflow-x: hidden;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+/* =========================
+   NAVBAR
+   ========================= */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--white);
+  border-bottom: 2px solid var(--rotaract-pink);
+  padding: 0 5%;
+  z-index: 1000;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo img {
+  height: 50px;
+  width: auto;
+}
+
+.logo h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--dark);
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--dark);
+  margin: 0 15px;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--rotaract-pink);
+}
+
+/* MENU MOBILE */
+.menu-toggle {
+  display: none;
+  font-size: 2rem;
+  color: var(--rotaract-pink);
+  cursor: pointer;
+}
+
+@media (max-width: 900px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    background-color: var(--white);
+    position: absolute;
+    top: 80px;
+    right: 0;
+    width: 100%;
+    border-top: 2px solid var(--rotaract-pink);
+    text-align: center;
+  }
+
+  .nav-links.show {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+}
+
+/* =========================
+   MAIN CALENDAR AREA
+   ========================= */
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 100px; /* spazio per la navbar fissa */
+  padding-bottom: 40px;
+  background-color: #fff;
+  min-height: calc(100vh - 120px);
+}
+
+.calendar-section {
+  width: 100%;
+  max-width: 1200px;
+  text-align: center;
+  padding: 0 20px;
+}
+
+.calendar-section h1 {
+  color: var(--rotaract-pink);
+  margin-bottom: 25px;
+  font-size: 2.2rem;
+  font-weight: 600;
+}
+
+/* CALENDARIO PRINCIPALE */
+.calendar-container {
+  width: 100%;
+  height: calc(100vh - 250px);
+  background: var(--white);
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.calendar-header button {
+  background: var(--rotaract-pink);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: background 0.3s;
+}
+
+.calendar-header button:hover {
+  background: #c63a6e;
+}
+
+#monthYear {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+/* GRIGLIA CALENDARIO FULL PAGE */
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-auto-rows: 1fr;
+  flex-grow: 1;
+  gap: 8px;
+  text-align: center;
+  align-content: stretch;
+}
+
+.calendar-grid div {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s, transform 0.1s;
+  cursor: pointer;
+  min-height: 100px;
+}
+
+.calendar-grid div:hover {
+  background-color: #fde4ee;
+  transform: scale(1.03);
+}
+
+.calendar-grid .today {
+  background-color: var(--rotaract-pink);
+  color: white;
+}
+
+.calendar-grid .event-day {
+  border: 2px solid var(--rotaract-pink);
+  background-color: #ffe6ef;
+  font-weight: bold;
+  position: relative;
+}
+
+.calendar-grid .event-day::after {
+  content: "•";
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  color: var(--rotaract-pink);
+  font-size: 22px;
+}
+
+/* =========================
+   MODAL EVENTI (INGRANDITO)
+   ========================= */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 10;
+  padding-top: 60px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.7);
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: auto;
+  padding: 40px;
+  border-radius: 15px;
+  width: 90%;
+  max-width: 700px;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.modal-content h2 {
+  color: var(--rotaract-pink);
+  margin-bottom: 15px;
+}
+
+.modal-content p {
+  margin: 8px 0;
+  line-height: 1.5;
+  font-size: 1rem;
+  color: var(--dark);
+}
+
+.close {
+  float: right;
+  font-size: 28px;
+  cursor: pointer;
+  color: var(--rotaract-pink);
+  font-weight: bold;
+}
+
+.close:hover {
+  color: #c63a6e;
+}
+
+/* =========================
+   FOOTER SEMPRE IN FONDO
+   ========================= */
+footer {
+  background-color: var(--dark);
+  color: var(--white);
+  text-align: center;
+  padding: 25px 0;
+  width: 100%;
+  margin-top: auto;
+  font-size: 0.95rem;
+  letter-spacing: 0.3px;
+}

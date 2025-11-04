@@ -1,0 +1,187 @@
+@import url('style_home.css');
+
+/* =========================
+   ROTARACT MILANO STORIA
+   ========================= */
+
+:root{
+    --rotaract-pink: #d81b60;
+    --light-gray: #f6f6f8;
+    --muted: #6b6b76;
+    --white: #ffffff;
+    --card-shadow: 0 6px 18px rgba(21,21,30,0.08);
+    --line-blue: #007bff;
+}
+
+/* HERO */
+.hero-storia {
+    position: relative;
+    height: 44vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-image: url('../media/storia/hero-storia.jpg');
+    background-size: cover;
+    background-position: center;
+    color: var(--white);
+    margin-bottom: 20px;
+}
+
+.hero-storia::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+}
+
+.hero-storia .hero-content {
+    position: relative;
+    z-index: 1;
+    padding: 0 1rem;
+}
+
+/* TIMELINE SECTION */
+.timeline-section {
+    padding: 40px 6%;
+    background: linear-gradient(180deg,#fff 0%, #fbfbfd 100%);
+}
+
+.timeline-section h3 {
+    text-align: center;
+    color: var(--rotaract-pink);
+    font-size: 1.9rem;
+    margin-bottom: 18px;
+    letter-spacing: .4px;
+}
+
+/* Timeline Table - Serpentina */
+#divLineaTempo {
+    width: 80%;
+    margin: 0 auto;
+}
+
+#tabTempo {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.rigaTempo td {
+    border-top: solid 4px var(--line-blue); /* linea più spessa */
+    height: 100px;
+    min-width: 30px;
+    position: relative;
+    padding: 0px;
+}
+
+.rigaTempo td:first-child {
+    border-left: none;
+}
+
+.rigaTempo td:last-child {
+    border-right: none;
+}
+
+/* Linee verticali serpentina */
+.rigaTempo:nth-child(odd) td:last-child {
+    border-right: solid 4px var(--line-blue);
+}
+
+.rigaTempo:nth-child(even) td:first-child {
+    border-left: solid 4px var(--line-blue);
+}
+
+/* Pallini */
+.rigaTempo td::before {
+    content: '';
+    display: block;
+    width: 16px; 
+    height: 16px; 
+    background-color: var(--line-blue); 
+    border-radius: 50%;
+    position: absolute;
+    top: 0%;
+    transform: translateY(-50%);
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.rigaTempo td:first-child::before {
+    display: none;
+}
+
+/* Item styling */
+.rigaTempo td span.year {
+    display: block;
+    font-weight: 700;
+    color: var(--muted);
+    font-size: 0.85rem;
+    text-align: center;
+}
+
+.rigaTempo td span.pres {
+    display: block;
+    font-weight: 600;
+    color: #222;
+    font-size: 0.95rem;
+    text-align: center;
+}
+
+/* Hover effect */
+.rigaTempo td:hover {
+    background: linear-gradient(180deg, rgba(216,27,96,0.95), #ff6b9a);
+    color: #fff;
+    transform: translateY(-6px);
+}
+
+.rigaTempo td:hover span.year {
+    color: rgba(255,255,255,0.9);
+}
+
+.rigaTempo td:hover span.pres {
+    color: #fff;
+}
+
+/* responsive tweaks */
+@media (max-width: 980px){
+    .rigaTempo td {
+        height: 120px;
+    }
+}
+
+@media (max-width: 560px){
+    #tabTempo {
+        display: block;
+    }
+    .rigaTempo {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+    .rigaTempo td {
+        border-left: none;
+        border-right: none;
+        border-top: solid 3px var(--line-blue);
+        height: auto;
+        padding: 12px 0;
+    }
+    .rigaTempo td::before {
+        left: 20px;
+    }
+    .rigaTempo td span.pres {
+        white-space: normal;
+    }
+}
+
+/* FOOTER */
+.footer{
+    padding:18px 6%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:12px;
+    border-top:1px solid rgba(0,0,0,0.04);
+    background:#fff;
+    color:var(--muted);
+}
+.footer .socials img{ height:20px; margin-left:10px; opacity:0.9; }
