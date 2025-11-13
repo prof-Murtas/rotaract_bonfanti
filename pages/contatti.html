@@ -3,38 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rotaract Milano - Contatti</title>
+    <title>Contatti</title>
     <link rel="stylesheet" href="../css/style_contatti.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <script src="script.js" defer></script>
+    <link rel="icon" type="image/png" href="../media/homepage/logo.png">
 </head>
 <body>
 
-    <nav class="navbar">
+    <!-- HEADER / MENU -->
+    <header class="navbar">
         <div class="logo">
-            <img src="logo.png" alt="Rotaract Logo">
-            <span>Rotaract Trento</span>
+            <img src="../media/homepage/logo.png" alt="Rotaract Trento Logo">
+            <h1>Rotaract Trento</h1>
         </div>
-        <div class="nav-links">
+        <nav class="nav-links" id="main-nav" aria-label="Navigazione principale">
             <a href="index.html">Home</a>
-            <a href="#">Chi Siamo</a>
-            <a href="#">Service</a>
-            <a href="#">Eventi</a>
-            <a href="#" class="active">Contatti</a>
+            <a href="chi_siamo.html">Chi siamo</a>
+            <a href="storia.html">Storia</a>
+            <a href="calendario.html">Calendario</a>
+            <a href="contatti.html" class="active">Contatti</a>
+        </nav>
+        <div class="menu-toggle" id="mobile-menu" role="button" aria-controls="main-nav" aria-expanded="false" tabindex="0">
+            &#9776;
         </div>
-        <div class="menu-toggle" id="menu-toggle">
-            &#9776; </div>
-    </nav>
+    </header>
 
+    <!-- CONTATTI -->
     <section class="contact-section">
         <div class="container">
             <h2>Contattaci</h2>
-            <p class="subtitle">Siamo qui per rispondere a tutte le tue domande. Scrivici!</p>
+            <p class="subtitle">Compila il modulo per inviarci un messaggio</p>
 
             <div class="contact-grid">
+                <!-- FORM -->
                 <div class="contact-form-container">
-                    <h3>Scrivi in questo form per contattarci</h3>
-                    <form id="contact-form" class="contact-form">
+                    <h3>Scrivici un messaggio</h3>
+                    <form class="contact-form" id="contactForm" action="/rotaract_bonfanti/php/send_mail.php" method="POST">
                         <div class="form-group">
                             <label for="name">Nome</label>
                             <input type="text" id="name" name="name" required>
@@ -47,53 +50,60 @@
                             <label for="message">Messaggio</label>
                             <textarea id="message" name="message" rows="5" required></textarea>
                         </div>
-                        <button type="submit" class="btn-primary">Invia Messaggio</button>
-                        <p id="form-status" class="form-status"></p>
+                        <button type="submit" class="btn-primary">Invia</button>
                     </form>
                 </div>
 
+                <!-- INFO -->
                 <div class="contact-info">
-                    <h3>Informazioni di Contatto</h3>
-                    <div class="info-block">
-                        <h4>Sede</h4>
-                        <p>Via Brigata Acqui 15</p>
-                        <p>38122 - Trento (TN)</p>
-                    </div>
+                    <h3>Informazioni</h3>
                     <div class="info-block">
                         <h4>Email</h4>
-                        <p>rotaracttrento1968@gmail.com</p>
+                        <p>info@iltuodominio.it</p>
                     </div>
-                    <div class="socials-contact">
-                        <h4>Seguici sui Social</h4>
-                        <a href="https://facebook.com" target="_blank">
-                            <img src="facebook.svg" alt="Facebook">
-                        </a>
-                        <a href="https://instagram.com" target="_blank">
-                            <img src="instagram.svg" alt="Instagram">
-                        </a>
-                        <a href="https://linkedin.com" target="_blank">
-                            <img src="linkedin.svg" alt="LinkedIn">
-                        </a>
+                    <div class="info-block">
+                        <h4>Telefono</h4>
+                        <p>+39 123 456 789</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- FOOTER -->
     <footer class="footer">
+        <p>© 2025 Rotaract Club Trento — Tutti i diritti riservati</p>
         <div class="socials">
-            <a href="https://facebook.com" target="_blank">
-                <img src="facebook.svg" alt="Facebook">
+            <a href="https://www.instagram.com/rotaractclubtrento/" aria-label="Instagram">
+                <img src="../media/homepage/icon_instagram.svg" alt="Instagram">
             </a>
-            <a href="https://instagram.com" target="_blank">
-                <img src="instagram.svg" alt="Instagram">
+            <a href="https://www.facebook.com/rotaracttrento/?locale=it_IT" aria-label="Facebook">
+                <img src="../media/homepage/icon_facebook.svg" alt="Facebook">
             </a>
-            <a href="https://linkedin.com" target="_blank">
-                <img src="linkedin.svg" alt="LinkedIn">
+            <!-- EMAIL -->
+            <a href="mailto:info@iltuodominio.it" aria-label="Email">
+                <img src="../media/homepage/icon_mail.svg" alt="Email">
             </a>
         </div>
-        <p>&copy; 2024 Rotaract Club Trento | Privacy Policy | Cookie Policy</p>
     </footer>
+
+    <!-- SCRIPT per resettare il form dopo invio -->
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('status') === 'success') {
+            const form = document.getElementById('contactForm');
+            if (form) form.reset();
+        }
+
+        // Toggle menu mobile
+        const menuToggle = document.getElementById('mobile-menu');
+        const navLinks = document.getElementById('main-nav');
+        menuToggle.addEventListener('click', () => {
+            const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+            menuToggle.setAttribute('aria-expanded', !expanded);
+            navLinks.classList.toggle('active');
+        });
+    </script>
 
 </body>
 </html>

@@ -5,11 +5,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const closeModal = document.querySelector(".close");
 
     const eventTitle = document.getElementById("eventTitle");
-    const eventContainer = document.getElementById("eventDescription"); // useremo solo questo per tutti gli eventi
+    const eventContainer = document.getElementById("eventDescription");
 
     let currentMonth = new Date().getMonth();
     let currentYear = new Date().getFullYear();
     let events = [];
+
+    const daysOfWeek = ["Lun", "Mar", "Mer", "Gio", "Ven", "Sab", "Dom"];
 
     function formatDateForCompare(date) {
         const d = new Date(date);
@@ -28,25 +30,44 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function renderCalendar(month, year) {
         calendar.innerHTML = "";
+
+        // 1. RIGA GIORNI DELLA SETTIMANA
+        daysOfWeek.forEach(day => {
+            const dayHeader = document.createElement("div");
+            dayHeader.textContent = day;
+            dayHeader.style.fontWeight = "600";
+            dayHeader.style.padding = "10px 0";
+            calendar.appendChild(dayHeader);
+        });
+
         const firstDay = new Date(year, month, 1);
         const lastDay = new Date(year, month + 1, 0);
-        const startDay = firstDay.getDay();
+        const prevMonthLastDay = new Date(year, month, 0).getDate();
+        const startDay = firstDay.getDay() === 0 ? 6 : firstDay.getDay() - 1; // Lun=0
+
         monthYear.textContent = firstDay.toLocaleString("it-IT", { month: "long", year: "numeric" });
 
-        for (let i = 0; i < (startDay === 0 ? 6 : startDay - 1); i++) {
-            calendar.appendChild(document.createElement("div"));
+        // 2. Celle del mese precedente
+        for (let i = startDay - 1; i >= 0; i--) {
+            const cell = document.createElement("div");
+            cell.textContent = prevMonthLastDay - i;
+            cell.classList.add("prev-month-day");
+            calendar.appendChild(cell);
         }
 
+        // 3. Giorni del mese corrente
         for (let day = 1; day <= lastDay.getDate(); day++) {
             const date = new Date(year, month, day);
             const dateStr = formatDateForCompare(date);
             const cell = document.createElement("div");
             cell.textContent = day;
 
+            // Evidenzia oggi
             if (dateStr === formatDateForCompare(new Date())) {
                 cell.classList.add("today");
             }
 
+            // Evidenzia giorni con eventi
             const dayEvents = events.filter(e => formatDateForCompare(e.data) === dateStr);
             if (dayEvents.length > 0) {
                 cell.classList.add("event-day");
@@ -55,17 +76,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
             calendar.appendChild(cell);
         }
+
+        // 4. Completa l’ultima riga con giorni del mese successivo
+        const totalCells = startDay + lastDay.getDate();
+        const nextDays = totalCells % 7 === 0 ? 0 : 7 - (totalCells % 7);
+        for (let i = 1; i <= nextDays; i++) {
+            const cell = document.createElement("div");
+            cell.textContent = i;
+            cell.classList.add("next-month-day");
+            calendar.appendChild(cell);
+        }
     }
 
     function showEvents(dayEvents) {
-        // Titolo modal
         eventTitle.textContent = `Eventi del giorno: ${dayEvents[0].data}`;
-
-        // Pulisce contenuto precedente
         eventContainer.innerHTML = "";
 
-        // Genera box per ogni evento
-        dayEvents.forEach((event, index) => {
+        dayEvents.forEach(event => {
             const box = document.createElement("div");
             box.classList.add("event-box");
 
@@ -97,7 +124,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.getElementById("prevMonth").addEventListener("click", () => {
         currentMonth--;
-        if (currentMonth < 0) { currentMonth = 11; currentYear--; }
+        if (currentMonth < 0) { currentMonth = 11; currentYear--; }a
         renderCalendar(currentMonth, currentYear);
     });
 

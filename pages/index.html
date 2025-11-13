@@ -2,14 +2,11 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <!-- viewport: rende la pagina responsive adattando la larghezza al device -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rotaract Trento</title>
-    <!-- foglio di stile esterno; percorso relativo dalla posizione del file HTML -->
     <link rel="stylesheet" href="../css/style_home.css">
-    <!-- script con defer: scarica in background ed esegue solo dopo il parsing dell'HTML -->
-    <script defer src="../javascript/javascript_home.js"></script>
-    <!-- favicon mostrata nella scheda del browser; type aiuta il browser a interpretare il file -->
+    <!-- Lo script JS ora contiene la logica per caricare gli eventi -->
+    <script src="../javascript/javascript_home.js"></script>
     <link rel="icon" type="image/png" href="../media/homepage/logo.png">
 </head>
 
@@ -17,14 +14,9 @@
     <!-- HEADER: barra di navigazione -->
     <header class="navbar">
         <div class="logo">
-            <!-- alt: testo alternativo per accessibilità e SEO -->
             <img src="../media/homepage/logo.png" alt="Rotaract Trento Logo">
             <h1>Rotaract Trento</h1>
         </div>
-
-        <!-- NAVLINKS: struttura dei link di navigazione
-             - su desktop visibili orizzontalmente
-             - su mobile nascosti via CSS e mostrati dal JS aggiungendo la classe .show -->
         <nav class="nav-links" id="main-nav" aria-label="Navigazione principale">
             <a href="index.html" class="active">Home</a>
             <a href="chi_siamo.html">Chi siamo</a>
@@ -32,12 +24,6 @@
             <a href="calendario.html">Calendario</a>
             <a href="contatti.html">Contatti</a>
         </nav>
-
-        <!-- MENU-TOGGLE: icona hamburger per dispositivi mobili
-             - id usato dal JS per collegare il comportamento
-             - role e tabindex migliorano l'accessibilità (supporto tastiera/screen reader)
-             - aria-controls indica quale elemento viene controllato
-             - aria-expanded riflette lo stato aperto/chiuso e deve essere aggiornato dinamicamente -->
         <div class="menu-toggle" id="mobile-menu" role="button" aria-controls="main-nav" aria-expanded="false" tabindex="0">
             &#9776;
         </div>
@@ -45,25 +31,14 @@
 
     <!-- HERO / VIDEO SECTION -->
     <section class="hero">
-        <!--
-        Video di sfondo:
-        - autoplay: tenta di riprodurre automaticamente
-        - muted: necessario per permettere autoplay in molti browser
-        - loop: riproduzione continua
-        - playsinline: evita il fullscreen automatico sui dispositivi mobili (iOS)
-        - poster: immagine di fallback/anteprima mostrata prima della riproduzione o se il video non parte
-        -->
         <video autoplay muted loop playsinline class="background-video" id="hero-video" poster="../media/homepage/video-poster.jpg">
-            <!-- source: fornisce il file e il MIME type; è buona pratica fornire più formati se necessario -->
             <source src="../media/homepage/video.mp4" type="video/mp4">
-            <!-- testo alternativo mostrato se il browser non supporta l'elemento video -->
             Il tuo browser non supporta il video.
         </video>
-
         <div class="hero-content">
             <h2>Costruiamo insieme un futuro migliore</h2>
             <p>Il Rotaract Club Trento unisce giovani professionisti e studenti
-               che condividono valori di amicizia, servizio e crescita personale.</p>
+                che condividono valori di amicizia, servizio e crescita personale.</p>
             <a href="chi_siamo.html" class="btn-primary">Scopri di più</a>
         </div>
     </section>
@@ -82,14 +57,23 @@
     <!-- CALENDAR PREVIEW -->
     <section class="calendar-preview">
         <h3>Prossimi eventi</h3>
-        <div class="event-card">
-            <h4>Serata di beneficenza</h4>
-            <p>Sabato 15 Novembre 2025 – Palazzo Geremia, Trento</p>
+        
+        <!-- 
+          MODIFICA: Aggiunto un ID a questo container.
+          Il JavaScript (javascript_home.js) cercherà questo ID 
+          e sostituirà il suo contenuto con gli eventi caricati dall'API.
+        -->
+        <div class="event-preview-container" id="event-preview-container">
+            <!-- 
+              Questi sono placeholder statici. Verranno mostrati brevemente
+              o se il JavaScript fallisce, ma saranno sostituiti 
+              dagli eventi reali caricati dall'API.
+            -->
+            <div class="event-card static-placeholder">
+                <p>Caricamento eventi in corso...</p>
+            </div>
         </div>
-        <div class="event-card">
-            <h4>Incontro distrettuale Rotaract</h4>
-            <p>22 Dicembre 2025 – Sala Conferenze, Rovereto</p>
-        </div>
+        
         <a href="calendario.html" class="btn-secondary">Vedi il calendario completo</a>
     </section>
 
@@ -97,13 +81,10 @@
     <footer class="footer">
         <p>© 2025 Rotaract Club Trento — Tutti i diritti riservati</p>
         <div class="socials">
-            <!-- link ai social: attualmente placeholder '#' — sostituire con URL reali -->
             <a href="#" aria-label="Instagram"><img src="../media/homepage/icon_instagram.svg" alt="Instagram"></a>
             <a href="#" aria-label="Facebook"><img src="../media/homepage/icon_facebook.svg" alt="Facebook"></a>
             <a href="#" aria-label="Email"><img src="../media/homepage/icon_mail.svg" alt="Email"></a>
         </div>
     </footer>
-
-    <!-- Nota: lo script esterno è caricato con defer nell'head; qui non è presente codice inline aggiuntivo -->
 </body>
 </html>

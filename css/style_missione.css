@@ -1,0 +1,183 @@
+/* =========================
+   ROTARACT TRENTO MISSIONE
+   ========================= */
+
+/* :root - variabili CSS globali per colori riutilizzabili */
+:root {
+    /* Colore principale del brand */
+    --rotaract-pink: #E2457C;
+    /* Colore testi scuri */
+    --dark: #040F0F;
+    /* Colore di sfondo chiaro */
+    --white: #FCFFFC;
+    /* Colore grigio chiaro per card/fondi secondari */
+    --light-gray: #F4F4F4;
+}
+
+/* RESET */
+/* * seleziona tutti gli elementi; reset margini e padding e imposta box-sizing */
+* {
+    margin: 0;               /* rimuove margini di default del browser */
+    padding: 0;              /* rimuove padding di default del browser */
+    box-sizing: border-box;  /* include padding e border nel calcolo di width/height */
+}
+
+/* body: impostazioni tipografiche e sfondo generali */
+body {
+    font-family: "Poppins", sans-serif; /* famiglia carattere e fallback */
+    color: var(--dark);                 /* colore testo preso dalla variabile */
+    background-color: var(--white);     /* colore di sfondo preso dalla variabile */
+    overflow-x: hidden;                 /* evita lo scroll orizzontale indesiderato */
+}
+
+/* NAVBAR */
+/* .navbar: contenitore della barra superiore */
+.navbar {
+    position: fixed;           /* fissa la navbar in cima alla finestra durante lo scroll */
+    top: 0;                    /* posizione verticale: top della viewport */
+    width: 100%;               /* occupa tutta la larghezza disponibile */
+    height: 80px;              /* altezza fissa della navbar */
+    display: flex;             /* layout flessibile per posizionare logo, link e icona mobile */
+    align-items: center;       /* allinea verticalmente gli elementi al centro */
+    justify-content: space-between; /* separa logo e nav/link */
+    background-color: var(--white); /* sfondo bianco per la navbar */
+    border-bottom: 2px solid var(--rotaract-pink); /* bordo inferiore color brand */
+    padding: 0 5%;            /* padding laterale percentuale per margine interno */
+    z-index: 1000;            /* sovrasta altri elementi (es. video di sfondo) */
+}
+
+/* .logo: contenitore logo + testo */
+.logo {
+    display: flex;            /* usa flex per affiancare immagine e testo */
+    align-items: center;      /* allinea verticalmente immagine e h1 */
+    gap: 10px;                /* spazio tra immagine e testo */
+}
+
+/* .logo img: dimensionamento immagine del logo */
+.logo img {
+    height: 135px; /* altezza fissa per mantenere proporzioni coerenti */
+    width: auto;  /* larghezza automatica per preservare l'aspect ratio */
+}
+
+/* .nav-links a: stile dei link di navigazione */
+.nav-links a {
+    text-decoration: none;    /* rimuove sottolineatura di default */
+    color: var(--dark);       /* colore testo dei link */
+    margin: 0 15px;           /* margine orizzontale tra i link */
+    font-weight: 500;         /* peso del font per maggiore visibilità */
+    transition: color 0.3s;   /* transizione graduale colore al passaggio del mouse */
+}
+
+/* stato hover e stato attivo per i link */
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--rotaract-pink); /* colore brand quando il link è attivo o hoverato */
+}
+
+/* Mobile menu: icona hamburger */
+.menu-toggle {
+    display: none;            /* nascosta di default su desktop (mostrata via media query su mobile) */
+    font-size: 2rem;          /* dimensione dell'icona */
+    color: var(--rotaract-pink); /* colore icona brand */
+    cursor: pointer;          /* cursore pointer indica elemento cliccabile */
+}
+
+/* HERO */
+/* .hero: sezione principale a schermo intero*/
+.hero {
+    position: relative;       /* contesto per posizionare il video assoluto */
+    height: 100vh;            /* altezza pari a 100% dell'altezza viewport */
+    display: flex;            /* centrare contenuto orizz./vert. con flex */
+    justify-content: center;  /* centra orizzontalmente il contenuto */
+    align-items: center;      /* centra verticalmente il contenuto */
+    text-align: center;       /* testo centrato */
+    color: var(--dark);      /* colore testo della hero (utile se sovrapposto al video) */
+}
+
+/* FOOTER */
+/* .footer: area footer con sfondo scuro */
+.footer {
+    background-color: var(--dark); /* sfondo scuro per contrasto */
+    color: var(--white);           /* testo bianco */
+    text-align: center;            /* contenuto centrato */
+    padding: 30px 0;               /* padding verticale */
+}
+
+/* Icone social nel footer */
+.footer .socials img {
+    height: 25px;                  /* dimensione icone */
+    width: 25px;                   /* larghezza fissa */
+    margin: 0 10px;                /* spazio orizzontale tra icone */
+    filter: brightness(0) invert(1); /* rende icone scure chiare su sfondo scuro */
+    transition: transform 0.3s;    /* animazione per hover */
+}
+
+/* Hover sulle icone social: effetto leggero di ingrandimento */
+.footer .socials img:hover {
+    transform: scale(1.1);         /* scala l'icona per effetto hover */
+}
+
+/* RESPONSIVE */
+/* Breakpoint a 900px: modifica layout per schermi stretti/mobile */
+@media (max-width: 900px) {
+    /* .nav-links: su mobile la nav è nascosta e diventa un pannello verticale posizionato sotto la navbar */
+    .nav-links {
+        display: none;               /* nascosta di default su mobile; verrà mostrata aggiungendo .show via JS */
+        flex-direction: column;      /* i link saranno disposti in colonna */
+        background-color: var(--white); /* sfondo per il pannello menu */
+        position: absolute;          /* posizionato assolutamente rispetto alla navbar */
+        top: 80px;                   /* direttamente sotto la navbar fissa (stessa altezza) */
+        right: 0;                    /* allineato al margine destro */
+        width: 100%;                 /* occupa tutta la larghezza dello schermo mobile */
+        border-top: 2px solid var(--rotaract-pink); /* bordo superiore per continuità visiva */
+    }
+
+    /* .nav-links.show: stato visibile del menu controllato via JS */
+    .nav-links.show {
+        display: flex;               /* mostra i link come flex (colonna) */
+    }
+
+    /* mostra l'icona hamburger su mobile */
+    .menu-toggle {
+        display: block;              /* icona visibile su schermi stretti */
+    }
+
+    /* riduce la dimensione dell'headline nella hero per adattarsi allo schermo */
+    .hero-content h2 {
+        font-size: 2rem;             /* dimensione più contenuta su mobile */
+    }
+}
+
+/* Compensa navbar fissa: spazio sufficiente prima del contenuto principale */
+body > main { padding-top: 80px; }
+
+/* HERO interno*/
+.hero-internal {
+    position: relative;
+    display:flex;
+    align-items:center;
+    justify-content:left;
+    text-align:left;
+    color:var(--dark);
+    background: none; /* background gestito da .hero-overlay per non interferire con navbar */
+}
+
+.hero-internal h1,h2,h4{
+    position: relative;
+    display:flex;
+    align-items:center;
+    justify-content:left;
+    text-align:left;
+    color:var(--rotaract-pink);
+    background: none; /* background gestito da .hero-overlay per non interferire con navbar */
+}
+
+/* contenuto hero interno dimensioni */
+.hero-internal .hero-content{ max-width:900px; padding:20px; }
+
+/* Semplificazioni mobile */
+@media (max-width:900px){
+    .hero-internal{ height:40vh; }
+    .hero-internal .hero-content h2{ font-size:2rem; }
+    .members-grid{ padding:0 16px; }
+}

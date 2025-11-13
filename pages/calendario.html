@@ -33,7 +33,7 @@
   <!-- MAIN CONTENT -->
   <main>
     <section class="calendar-section">
-      <h1>Calendario Eventi</h1>
+      <h1 class="animated-title">Calendario Eventi</h1>
       <div class="calendar-container">
         <div class="calendar-header">
           <button id="prevMonth">&#10094;</button>
@@ -48,18 +48,39 @@
         <div class="modal-content">
           <span class="close">&times;</span>
           <h2 id="eventTitle"></h2>
-          <p id="eventDate"></p>
-          <p id="eventTime"></p>
-          <p id="eventDescription"></p>
+          <div id="eventDescription"></div>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- FOOTER -->
-  <footer>
-    <p>© 2025 Rotaract Club Trento - Tutti i diritti riservati</p>
-  </footer>
+  
 
+  <!-- SCRIPT PER MENU MOBILE -->
+  <script>
+    const menuToggle = document.getElementById('mobile-menu');
+    const navLinks = document.getElementById('main-nav');
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+      menuToggle.setAttribute('aria-expanded', !expanded);
+      navLinks.classList.toggle('active');
+    });
+  </script>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>© 2025 Rotaract Club Trento — Tutti i diritti riservati</p>
+    <div class="socials">
+      <a href="https://www.instagram.com/rotaractclubtrento/" aria-label="Instagram">
+        <img src="../media/homepage/icon_instagram.svg" alt="Instagram">
+      </a>
+      <a href="https://www.facebook.com/rotaracttrento/?locale=it_IT" aria-label="Facebook">
+        <img src="../media/homepage/icon_facebook.svg" alt="Facebook">
+      </a>
+      <a href="mailto:info@iltuodominio.it" aria-label="Email">
+        <img src="../media/homepage/icon_mail.svg" alt="Email">
+      </a>
+    </div>
+  </footer>
 </body>
 </html>
