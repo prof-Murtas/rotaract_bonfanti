@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $mail->Port = 587;
     
         // MITTENTE E DESTINATARIO
-        $mail->setFrom('giordano.dorigoni@buonarroti.tn.it', 'Modulo Contatti');
+        $mail->setFrom('giordano.dorigoni@buonarroti.tn.it', 'Modulo Contatti');//Aggiungere il dominio di gmail
         $mail->addReplyTo($email, $name);
         $mail->addAddress('alessandro.berti1@buonarroti.tn.it');
     

@@ -4,241 +4,429 @@
 
 /* :root - variabili CSS globali per colori riutilizzabili */
 :root {
-    /* Colore principale del brand */
     --rotaract-pink: #E2457C;
-    /* Colore testi scuri */
     --dark: #040F0F;
-    /* Colore di sfondo chiaro */
     --white: #FCFFFC;
-    /* Colore grigio chiaro per card/fondi secondari */
     --light-gray: #F4F4F4;
 }
 
 /* RESET */
-/* * seleziona tutti gli elementi; reset margini e padding e imposta box-sizing */
 * {
-    margin: 0;               /* rimuove margini di default del browser */
-    padding: 0;              /* rimuove padding di default del browser */
-    box-sizing: border-box;  /* include padding e border nel calcolo di width/height */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-/* body: impostazioni tipografiche e sfondo generali */
 body {
-    font-family: "Poppins", sans-serif; /* famiglia carattere e fallback */
-    color: var(--dark);                 /* colore testo preso dalla variabile */
-    background-color: var(--white);     /* colore di sfondo preso dalla variabile */
-    overflow-x: hidden;                 /* evita lo scroll orizzontale indesiderato */
+    font-family: "Poppins", sans-serif;
+    color: var(--dark);
+    background-color: var(--white);
+    overflow-x: hidden;
 }
 
-/* NAVBAR */
-/* .navbar: contenitore della barra superiore */
+/* =========================
+   NAVBAR MIGLIORATA
+   ========================= */
 .navbar {
-    position: fixed;           /* fissa la navbar in cima alla finestra durante lo scroll */
-    top: 0;                    /* posizione verticale: top della viewport */
-    width: 100%;               /* occupa tutta la larghezza disponibile */
-    height: 80px;              /* altezza fissa della navbar */
-    display: flex;             /* layout flessibile per posizionare logo, link e icona mobile */
-    align-items: center;       /* allinea verticalmente gli elementi al centro */
-    justify-content: space-between; /* separa logo e nav/link */
-    background-color: var(--white); /* sfondo bianco per la navbar */
-    border-bottom: 2px solid var(--rotaract-pink); /* bordo inferiore color brand */
-    padding: 0 5%;            /* padding laterale percentuale per margine interno */
-    z-index: 1000;            /* sovrasta altri elementi (es. video di sfondo) */
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(252, 255, 252, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 2px solid var(--rotaract-pink);
+    padding: 0 6%;
+    z-index: 1000;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
 }
 
-/* .logo: contenitore logo + testo */
+/* LOGO */
 .logo {
-    display: flex;            /* usa flex per affiancare immagine e testo */
-    align-items: center;      /* allinea verticalmente immagine e h1 */
-    gap: 10px;                /* spazio tra immagine e testo */
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 
-/* .logo img: dimensionamento immagine del logo */
 .logo img {
-    height: 135px; /* altezza fissa per mantenere proporzioni coerenti */
-    width: auto;  /* larghezza automatica per preservare l'aspect ratio */
+    height: 110px;
+    width: auto;
+    transition: transform 0.3s ease;
 }
 
-/* .nav-links a: stile dei link di navigazione */
+.logo img:hover {
+    transform: scale(1.05);
+}
+
+.logo h1 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--dark);
+    letter-spacing: 0.5px;
+}
+
+/* NAVIGATION LINKS */
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
 .nav-links a {
-    text-decoration: none;    /* rimuove sottolineatura di default */
-    color: var(--dark);       /* colore testo dei link */
-    margin: 0 15px;           /* margine orizzontale tra i link */
-    font-weight: 500;         /* peso del font per maggiore visibilità */
-    transition: color 0.3s;   /* transizione graduale colore al passaggio del mouse */
+    position: relative;
+    text-decoration: none;
+    color: var(--dark);
+    font-weight: 500;
+    padding: 8px 0;
+    transition: color 0.3s ease;
 }
 
-/* stato hover e stato attivo per i link */
+/* Effetto hover con sottolineatura animata */
+.nav-links a::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background-color: var(--rotaract-pink);
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+    width: 100%;
+}
+
 .nav-links a:hover,
 .nav-links a.active {
-    color: var(--rotaract-pink); /* colore brand quando il link è attivo o hoverato */
+    color: var(--rotaract-pink);
 }
 
-/* Mobile menu: icona hamburger */
+/* MENU MOBILE */
 .menu-toggle {
-    display: none;            /* nascosta di default su desktop (mostrata via media query su mobile) */
-    font-size: 2rem;          /* dimensione dell'icona */
-    color: var(--rotaract-pink); /* colore icona brand */
-    cursor: pointer;          /* cursore pointer indica elemento cliccabile */
+    display: none;
+    font-size: 2rem;
+    color: var(--rotaract-pink);
+    cursor: pointer;
+    background: none;
+    border: none;
+    transition: transform 0.3s ease;
 }
 
-/* HERO */
-/* .hero: sezione principale a schermo intero con video di sfondo */
-.hero {
-    position: relative;       /* contesto per posizionare il video assoluto */
-    height: 100vh;            /* altezza pari a 100% dell'altezza viewport */
-    display: flex;            /* centrare contenuto orizz./vert. con flex */
-    justify-content: center;  /* centra orizzontalmente il contenuto */
-    align-items: center;      /* centra verticalmente il contenuto */
-    text-align: center;       /* testo centrato */
-    color: var(--white);      /* colore testo della hero (utile se sovrapposto al video) */
-    overflow: hidden;         /* nasconde parti del video che eccedono i bordi */
+.menu-toggle:hover {
+    transform: rotate(90deg);
 }
 
-/* .background-video: video posizionato dietro il contenuto */
-.background-video {
-    position: absolute;       /* posizione assoluta rispetto a .hero */
-    top: 0;                   /* allineato in alto */
-    left: 0;                  /* allineato a sinistra */
-    width: 100%;              /* occupa tutta la larghezza del contenitore */
-    height: 100%;             /* occupa tutta l'altezza del contenitore */
-    object-fit: cover;        /* ritaglia/scala il video per coprire l'area senza distorsione */
-    z-index: -1;              /* posto dietro gli altri elementi della hero */
-    filter: brightness(0.6);  /* scurisce leggermente il video per miglior contrasto testo */
-}
-
-/* .hero-content: contenitore testo sopra il video */
-.hero-content {
-    max-width: 700px;         /* limita la larghezza del blocco di testo */
-    padding: 20px;            /* padding interno per distanziamento */
-}
-
-/* Titolo principale nella hero */
-.hero-content h2 {
-    font-size: 3rem;          /* dimensione grande per headline */
-    margin-bottom: 20px;      /* spazio sotto il titolo */
-    color: var(--white);      /* colore bianco per contrasto sul video */
-}
-
-/* Paragrafo nella hero */
-.hero-content p {
-    font-size: 1.2rem;        /* dimensione leggibile per testo descrittivo */
-    margin-bottom: 30px;      /* spazio sotto il paragrafo */
-}
-
-/* Bottone principale (call-to-action) */
-.btn-primary {
-    background-color: var(--rotaract-pink); /* sfondo brand */
-    color: var(--white);        /* testo bianco */
-    padding: 12px 30px;         /* padding verticale e orizzontale */
-    border-radius: 25px;        /* bordi arrotondati per aspetto pill */
-    text-decoration: none;      /* rimuove sottolineatura */
-    transition: background 0.3s;/* transizione graduale al passaggio del mouse */
-}
-
-/* Hover per btn-primary */
-.btn-primary:hover {
-    background-color: #c63a6e;  /* tonalità più scura per effetto hover */
-}
-
-/* SECTIONS */
-/* Padding e allineamento comune per about e calendar-preview */
-.about, .calendar-preview {
-    padding: 80px 10%;          /* spazio verticale e padding laterale percentuale */
-    text-align: center;         /* testo centrato all'interno delle sezioni */
-}
-
-/* Titoli delle sezioni color brand */
-.about h3, .calendar-preview h3 {
-    color: var(--rotaract-pink); /* colore brand per i titoli di sezione */
-    margin-bottom: 20px;         /* spazio sotto il titolo */
-    font-size: 2rem;             /* dimensione del titolo */
-}
-
-/* Paragrafo nella sezione about con larghezza limitata */
-.about p {
-    max-width: 700px;            /* limita la larghezza per miglior leggibilità */
-    margin: 0 auto;              /* centra orizzontalmente il blocco */
-    line-height: 1.6;            /* interlinea per leggibilità */
-}
-
-/* .event-card: card semplice per anteprima eventi */
-.calendar-preview .event-card {
-    background-color: var(--light-gray); /* sfondo grigio chiaro */
-    padding: 20px;            /* padding interno */
-    border-radius: 10px;      /* angoli arrotondati */
-    margin: 15px auto;        /* margine verticale e auto per centrare orizzontalmente */
-    max-width: 600px;         /* larghezza massima della card */
-}
-
-/* Bottone secondario */
-.btn-secondary {
-    display: inline-block;    /* permette padding e dimensionamento come bottone */
-    margin-top: 20px;         /* spazio sopra il bottone */
-    text-decoration: none;    /* rimuove sottolineatura */
-    color: var(--rotaract-pink); /* testo color brand */
-    border: 2px solid var(--rotaract-pink); /* bordo color brand */
-    padding: 10px 25px;       /* padding del bottone */
-    border-radius: 25px;      /* arrotondamento per aspetto pill */
-    transition: background 0.3s, color 0.3s; /* transizione per background e colore */
-}
-
-/* Hover per btn-secondary: inverti sfondo e testo */
-.btn-secondary:hover {
-    background-color: var(--rotaract-pink); /* sfondo color brand */
-    color: var(--white);                     /* testo bianco per contrasto */
-}
-
-/* FOOTER */
-/* .footer: area footer con sfondo scuro */
-.footer {
-    background-color: var(--dark); /* sfondo scuro per contrasto */
-    color: var(--white);           /* testo bianco */
-    text-align: center;            /* contenuto centrato */
-    padding: 30px 0;               /* padding verticale */
-}
-
-/* Icone social nel footer */
-.footer .socials img {
-    height: 25px;                  /* dimensione icone */
-    width: 25px;                   /* larghezza fissa */
-    margin: 0 10px;                /* spazio orizzontale tra icone */
-    filter: brightness(0) invert(1); /* rende icone scure chiare su sfondo scuro */
-    transition: transform 0.3s;    /* animazione per hover */
-}
-
-/* Hover sulle icone social: effetto leggero di ingrandimento */
-.footer .socials img:hover {
-    transform: scale(1.1);         /* scala l'icona per effetto hover */
-}
-
-/* RESPONSIVE */
-/* Breakpoint a 900px: modifica layout per schermi stretti/mobile */
+/* RESPONSIVE MENU */
 @media (max-width: 900px) {
-    /* .nav-links: su mobile la nav è nascosta e diventa un pannello verticale posizionato sotto la navbar */
     .nav-links {
-        display: none;               /* nascosta di default su mobile; verrà mostrata aggiungendo .show via JS */
-        flex-direction: column;      /* i link saranno disposti in colonna */
-        background-color: var(--white); /* sfondo per il pannello menu */
-        position: absolute;          /* posizionato assolutamente rispetto alla navbar */
-        top: 80px;                   /* direttamente sotto la navbar fissa (stessa altezza) */
-        right: 0;                    /* allineato al margine destro */
-        width: 100%;                 /* occupa tutta la larghezza dello schermo mobile */
-        border-top: 2px solid var(--rotaract-pink); /* bordo superiore per continuità visiva */
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        position: absolute;
+        top: 75px;
+        right: 0;
+        width: 100%;
+        background-color: rgba(252, 255, 252, 0.97);
+        border-top: 2px solid var(--rotaract-pink);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        padding: 20px 0;
+        animation: fadeIn 0.3s ease forwards;
     }
 
-    /* .nav-links.show: stato visibile del menu controllato via JS */
-    .nav-links.show {
-        display: flex;               /* mostra i link come flex (colonna) */
+    .nav-links.active {
+        display: flex;
     }
 
-    /* mostra l'icona hamburger su mobile */
     .menu-toggle {
-        display: block;              /* icona visibile su schermi stretti */
-    }
-
-    /* riduce la dimensione dell'headline nella hero per adattarsi allo schermo */
-    .hero-content h2 {
-        font-size: 2rem;             /* dimensione più contenuta su mobile */
+        display: block;
     }
 }
+
+
+
+/* Animazione apertura menu mobile */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =========================
+   HERO
+   ========================= */
+.hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: var(--white);
+    overflow: hidden;
+}
+
+.background-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    filter: brightness(0.6);
+}
+
+.hero-content {
+    max-width: 700px;
+    padding: 20px;
+}
+
+.hero-content h2 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: var(--white);
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+
+.btn-primary {
+    background-color: var(--rotaract-pink);
+    color: var(--white);
+    padding: 12px 30px;
+    border: none;
+    border-radius: 25px;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: #c63a6e;
+}
+
+/* =========================
+   SECTIONS
+   ========================= */
+.about, .calendar-preview {
+    padding: 80px 10%;
+    text-align: center;
+}
+
+.about h3, .calendar-preview h3 {
+    color: var(--rotaract-pink);
+    margin-bottom: 20px;
+    font-size: 2rem;
+}
+
+.about p {
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.calendar-preview .event-card {
+    background-color: var(--light-gray);
+    padding: 20px;
+    border-radius: 10px;
+    margin: 15px auto;
+    max-width: 600px;
+}
+
+.btn-secondary {
+    display: inline-block;
+    margin-top: 20px;
+    text-decoration: none;
+    color: var(--rotaract-pink);
+    border: 2px solid var(--rotaract-pink);
+    padding: 10px 25px;
+    border-radius: 25px;
+    transition: background 0.3s, color 0.3s;
+}
+
+.btn-secondary:hover {
+    background-color: var(--rotaract-pink);
+    color: var(--white);
+}
+
+/* =========================
+   CONTACT SECTION
+   ========================= */
+.contact-section {
+    padding: 80px 5%;
+    min-height: calc(100vh - 75px - 100px);
+    background-color: var(--light-gray);
+}
+
+.contact-section .container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.contact-section h2 {
+    text-align: center;
+    color: var(--rotaract-pink);
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.contact-section .subtitle {
+    text-align: center;
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+    color: var(--dark);
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 40px;
+    background-color: var(--white);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+/* FORM */
+.contact-form-container h3 {
+    color: var(--dark);
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    border-bottom: 2px solid var(--light-gray);
+    padding-bottom: 10px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc; /* medium-gray non definita nelle variabili */
+    border-radius: 5px;
+    font-family: "Poppins", sans-serif;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: var(--rotaract-pink);
+    outline: none;
+}
+
+.contact-form .btn-primary {
+    width: 100%;
+    margin-top: 10px;
+}
+
+/* CONTACT INFO */
+.contact-info {
+    padding: 20px;
+    background-color: var(--light-gray);
+    border-radius: 8px;
+}
+
+.contact-info h3 {
+    color: var(--rotaract-pink);
+    margin-bottom: 25px;
+    font-size: 1.5rem;
+}
+
+.info-block {
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px dashed #ccc;
+}
+
+.info-block:last-of-type {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.info-block h4 {
+    color: var(--dark);
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.info-block p {
+    font-size: 1rem;
+    line-height: 1.4;
+}
+
+/* =========================
+   FOOTER
+   ========================= */
+.footer {
+    background-color: var(--dark);
+    color: var(--white);
+    text-align: center;
+    padding: 50px 0 35px;
+    font-size: 0.95rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+}
+
+.footer .socials {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+.footer .socials a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.08);
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    transition: all 0.3s ease;
+}
+
+.footer .socials a img {
+    height: 24px;
+    width: 24px;
+    filter: brightness(0) invert(1);
+    transition: transform 0.3s ease;
+}
+
+.footer .socials a:hover {
+    background-color: var(--rotaract-pink);
+    transform: translateY(-3px);
+}
+
+.footer .socials a:hover img {
+    transform: scale(1.15);
+}
+
+.footer p {
+    margin: 0;
+    opacity: 0.85;
+    letter-spacing: 0.3px;
+}
+

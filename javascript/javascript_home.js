@@ -1,21 +1,7 @@
 // --- Codice Esistente per Menu Mobile ---
 
-// Selezioni DOM principali
-const menu = document.getElementById("mobile-menu");
-const navLinks = document.querySelector(".nav-links");
 
-/*
-Listener sul click dell'icona menu (hamburger)
-*/
-if (menu && navLinks) {
-    menu.addEventListener("click", () => {
-        navLinks.classList.toggle("show");
 
-        // Aggiorniamo aria-expanded per migliorare l'accessibilità:
-        const expanded = menu.getAttribute("aria-expanded") === "true";
-        menu.setAttribute("aria-expanded", (!expanded).toString());
-    });
-}
 
 
 // --- NUOVO CODICE PER EVENTI DINAMICI ---
