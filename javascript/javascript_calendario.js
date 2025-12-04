@@ -124,15 +124,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.getElementById("prevMonth").addEventListener("click", () => {
         currentMonth--;
-        if (currentMonth < 0) { currentMonth = 11; currentYear--; }a
+        if (currentMonth < 0) { 
+            currentMonth = 11; 
+            currentYear--; 
+        }
         renderCalendar(currentMonth, currentYear);
     });
-
+    
     document.getElementById("nextMonth").addEventListener("click", () => {
         currentMonth++;
-        if (currentMonth > 11) { currentMonth = 0; currentYear++; }
+        if (currentMonth > 11) { 
+            currentMonth = 0; 
+            currentYear++; 
+        }
         renderCalendar(currentMonth, currentYear);
     });
+    
 
     fetchEvents();
 });

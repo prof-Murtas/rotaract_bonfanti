@@ -1,5 +1,5 @@
 /* =========================
-   ROTARACT TRENTO CALENDARIO
+   ROTARACT TRENTO CALENDARIO (con navbar uguale a homepage)
    ========================= */
 
 /* :root - variabili colori */
@@ -27,7 +27,7 @@ body {
 }
 
 /* =========================
- NAVBAR MIGLIORATA (uguale contatti)
+ NAVBAR (identica alla HOMEPAGE)
  ========================= */
 .navbar {
   position: fixed;
@@ -45,6 +45,7 @@ body {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
 }
 
+/* LOGO */
 .logo {
   display: flex;
   align-items: center;
@@ -68,6 +69,7 @@ body {
   letter-spacing: 0.5px;
 }
 
+/* NAVIGATION LINKS */
 .nav-links {
   display: flex;
   align-items: center;
@@ -104,6 +106,7 @@ body {
   color: var(--rotaract-pink);
 }
 
+/* MENU MOBILE */
 .menu-toggle {
   display: none;
   font-size: 2rem;
@@ -118,39 +121,40 @@ body {
   transform: rotate(90deg);
 }
 
+/* RESPONSIVE MENU */
 @media (max-width: 900px) {
   .nav-links {
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      position: absolute;
-      top: 75px;
-      right: 0;
-      width: 100%;
-      background-color: rgba(252, 255, 252, 0.97);
-      border-top: 2px solid var(--rotaract-pink);
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-      padding: 20px 0;
-      animation: fadeIn 0.3s ease forwards;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 75px;
+    right: 0;
+    width: 100%;
+    background-color: rgba(252, 255, 252, 0.97);
+    border-top: 2px solid var(--rotaract-pink);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    padding: 20px 0;
+    animation: fadeIn 0.3s ease forwards;
   }
 
   .nav-links.active {
-      display: flex;
+    display: flex;
   }
 
   .menu-toggle {
-      display: block;
+    display: block;
   }
 }
 
 @keyframes fadeIn {
   from {
-      opacity: 0;
-      transform: translateY(-10px);
+    opacity: 0;
+    transform: translateY(-10px);
   }
   to {
-      opacity: 1;
-      transform: translateY(0);
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
@@ -170,7 +174,7 @@ main {
   width: 100%;
   max-width: 1200px;
   text-align: center;
-  padding: 60px 20px 20px; /* distanza titolo menu maggiore */
+  padding: 60px 20px 20px;
 }
 
 .animated-title {
@@ -233,6 +237,19 @@ main {
 }
 
 /* GRID CALENDAR */
+.calendar-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.calendar-weekdays div {
+  text-align: center;
+  font-weight: 600;
+  color: var(--rotaract-pink);
+}
+
 .calendar-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
@@ -285,7 +302,11 @@ main {
   100% { transform: scale(1.03); }
 }
 
-/* MODAL EVENT */
+.empty-day {
+  height: 100px;
+}
+
+/* MODAL */
 .modal {
   display: none;
   position: fixed;
@@ -336,7 +357,7 @@ main {
 }
 
 /* =========================
- FOOTER MIGLIORATO (uguale contatti)
+ FOOTER
  ========================= */
 .footer {
   background-color: var(--dark);
@@ -389,21 +410,3 @@ main {
   opacity: 0.85;
   letter-spacing: 0.3px;
 }
-
-.calendar-weekdays {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 8px;
-  margin-bottom: 10px;
-}
-
-.calendar-weekdays div {
-  text-align: center;
-  font-weight: 600;
-  color: var(--rotaract-pink);
-}
-
-.empty-day {
-  height: 100px; /* uguale alle celle dei giorni */
-}
-
