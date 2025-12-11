@@ -2,7 +2,7 @@
    ROTARACT TRENTO HOMEPAGE
    ========================= */
 
-/* :root - variabili CSS globali per colori riutilizzabili */
+/* Variabili globali */
 :root {
     --rotaract-pink: #E2457C;
     --dark: #040F0F;
@@ -25,7 +25,7 @@ body {
 }
 
 /* =========================
-   NAVBAR MIGLIORATA
+   NAVBAR
    ========================= */
 .navbar {
     position: fixed;
@@ -43,7 +43,7 @@ body {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
 }
 
-/* LOGO */
+/* Logo */
 .logo {
     display: flex;
     align-items: center;
@@ -64,10 +64,9 @@ body {
     font-size: 1.6rem;
     font-weight: 700;
     color: var(--dark);
-    letter-spacing: 0.5px;
 }
 
-/* NAVIGATION LINKS */
+/* Links navigazione */
 .nav-links {
     display: flex;
     align-items: center;
@@ -83,7 +82,6 @@ body {
     transition: color 0.3s ease;
 }
 
-/* Effetto hover con sottolineatura animata */
 .nav-links a::after {
     content: "";
     position: absolute;
@@ -105,7 +103,7 @@ body {
     color: var(--rotaract-pink);
 }
 
-/* MENU MOBILE */
+/* Menu mobile */
 .menu-toggle {
     display: none;
     font-size: 2rem;
@@ -120,7 +118,6 @@ body {
     transform: rotate(90deg);
 }
 
-/* RESPONSIVE MENU */
 @media (max-width: 900px) {
     .nav-links {
         display: none;
@@ -146,9 +143,6 @@ body {
     }
 }
 
-
-
-/* Animazione apertura menu mobile */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -193,7 +187,6 @@ body {
 .hero-content h2 {
     font-size: 3rem;
     margin-bottom: 20px;
-    color: var(--white);
 }
 
 .hero-content p {
@@ -262,120 +255,6 @@ body {
 }
 
 /* =========================
-   CONTACT SECTION
-   ========================= */
-.contact-section {
-    padding: 80px 5%;
-    min-height: calc(100vh - 75px - 100px);
-    background-color: var(--light-gray);
-}
-
-.contact-section .container {
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.contact-section h2 {
-    text-align: center;
-    color: var(--rotaract-pink);
-    font-size: 2.5rem;
-    margin-bottom: 10px;
-}
-
-.contact-section .subtitle {
-    text-align: center;
-    font-size: 1.1rem;
-    margin-bottom: 40px;
-    color: var(--dark);
-}
-
-.contact-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 40px;
-    background-color: var(--white);
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-}
-
-/* FORM */
-.contact-form-container h3 {
-    color: var(--dark);
-    margin-bottom: 20px;
-    font-size: 1.5rem;
-    border-bottom: 2px solid var(--light-gray);
-    padding-bottom: 10px;
-}
-
-.form-group {
-    margin-bottom: 20px;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 500;
-}
-
-.form-group input,
-.form-group textarea {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc; /* medium-gray non definita nelle variabili */
-    border-radius: 5px;
-    font-family: "Poppins", sans-serif;
-    font-size: 1rem;
-    transition: border-color 0.3s;
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-    border-color: var(--rotaract-pink);
-    outline: none;
-}
-
-.contact-form .btn-primary {
-    width: 100%;
-    margin-top: 10px;
-}
-
-/* CONTACT INFO */
-.contact-info {
-    padding: 20px;
-    background-color: var(--light-gray);
-    border-radius: 8px;
-}
-
-.contact-info h3 {
-    color: var(--rotaract-pink);
-    margin-bottom: 25px;
-    font-size: 1.5rem;
-}
-
-.info-block {
-    margin-bottom: 25px;
-    padding-bottom: 15px;
-    border-bottom: 1px dashed #ccc;
-}
-
-.info-block:last-of-type {
-    border-bottom: none;
-    margin-bottom: 0;
-}
-
-.info-block h4 {
-    color: var(--dark);
-    font-weight: 700;
-    margin-bottom: 5px;
-}
-
-.info-block p {
-    font-size: 1rem;
-    line-height: 1.4;
-}
-
-/* =========================
    FOOTER
    ========================= */
 .footer {
@@ -429,4 +308,3 @@ body {
     opacity: 0.85;
     letter-spacing: 0.3px;
 }
-

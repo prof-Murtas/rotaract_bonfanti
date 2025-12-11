@@ -1,16 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-  // =============================
-  // MENU MOBILE
-  // =============================
-  const menuToggle = document.getElementById('mobile-menu');
-  const navLinks = document.getElementById('main-nav');
-
-  menuToggle.addEventListener('click', () => {
-      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
-      menuToggle.setAttribute('aria-expanded', !expanded);
-      navLinks.classList.toggle('active');
-  });
+  
 
   // =============================
   // CARICAMENTO TIMELINE DAL CSV

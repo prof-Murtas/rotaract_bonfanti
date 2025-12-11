@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bollettini — Rotaract Trento</title>
+  <link rel="stylesheet" href="../css/style_home.css" />
+  <link rel="stylesheet" href="../css/style_bollettini.css" />
+  <link rel="icon" type="image/png" href="../media/homepage/logo.png">
+</head>
+<body>
+  <!-- header e footer saranno caricati dinamicamente -->
+  <div id="header-container"></div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <h2>Bollettini ufficiali</h2>
+      <p>In questa sezione sono disponibili i bollettini ufficiali del
+         Rotaract Club Trento, pubblicati periodicamente per garantire
+         trasparenza, informazione e comunicazione ai soci e alla comunità.
+      </p>
+    </div>
+  </section>
+
+  <!-- INTRO -->
+  <section class="about">
+    <div class="about-container">
+      <h3>Cosa sono i bollettini</h3>
+      <p>I bollettini rappresentano uno strumento fondamentale di comunicazione
+         del Rotaract Club Trento. Al loro interno vengono riportate informazioni
+         su attività svolte, eventi futuri, comunicazioni ufficiali, verbali
+         e aggiornamenti amministrativi.
+      </p>
+      <p>Tutti i documenti pubblicati sono scaricabili liberamente in formato PDF.</p>
+    </div>
+  </section>
+
+  <!-- LISTA PDF -->
+  <section class="calendar-preview">
+    <h3>Archivio bollettini</h3>
+    <div class="bollettini-container" id="bollettini-container">
+      <div class="event-card static-placeholder">
+        <p>Caricamento bollettini in corso...</p>
+      </div>
+    </div>
+    <div style="margin-top:25px;">
+      <input
+        id="search-bollettini"
+        type="text"
+        placeholder="Cerca un bollettino per nome..."
+        style="padding:12px 16px; width:100%; max-width:420px; border-radius:10px; border:1px solid #ddd;"
+      >
+    </div>
+  </section>
+
+  <!-- TRASPARENZA -->
+  <section class="about">
+    <div class="about-container">
+      <h3>Trasparenza e accesso ai documenti</h3>
+      <p>Il Rotaract Club Trento crede fortemente nella trasparenza e nella
+         condivisione delle informazioni. Per questo motivo, i bollettini
+         ufficiali vengono resi pubblicamente disponibili tramite questo portale.
+      </p>
+      <p>I documenti pubblicati sono consultabili in qualsiasi momento
+         e costituiscono un archivio storico delle attività del club.
+      </p>
+    </div>
+  </section>
+
+  <div id="footer-container"></div>
+
+  <!-- JS partials + bollettini -->
+  <script src="../javascript/partials.js" defer></script>
+  <script src="../javascript/javascript_bollettini.js" defer></script>
+</body>
+</html>

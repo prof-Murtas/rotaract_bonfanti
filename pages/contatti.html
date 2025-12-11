@@ -3,29 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contatti</title>
+    <title>Contatti — Rotaract Trento</title>
     <link rel="stylesheet" href="../css/style_contatti.css">
     <link rel="icon" type="image/png" href="../media/homepage/logo.png">
 </head>
 <body>
 
-    <!-- HEADER / MENU -->
-    <header class="navbar">
-        <div class="logo">
-            <img src="../media/homepage/logo.png" alt="Rotaract Trento Logo">
-            <h1>Rotaract Trento</h1>
-        </div>
-        <nav class="nav-links" id="main-nav" aria-label="Navigazione principale">
-            <a href="index.html">Home</a>
-            <a href="chi_siamo.html">Chi siamo</a>
-            <a href="storia.html">Storia</a>
-            <a href="calendario.html">Calendario</a>
-            <a href="contatti.html" class="active">Contatti</a>
-        </nav>
-        <div class="menu-toggle" id="mobile-menu" role="button" aria-controls="main-nav" aria-expanded="false" tabindex="0">
-            &#9776;
-        </div>
-    </header>
+    <!-- HEADER dinamico -->
+    <div id="header-container"></div>
 
     <!-- CONTATTI -->
     <section class="contact-section">
@@ -70,40 +55,18 @@
         </div>
     </section>
 
-    <!-- FOOTER -->
-    <footer class="footer">
-        <p>© 2025 Rotaract Club Trento — Tutti i diritti riservati</p>
-        <div class="socials">
-            <a href="https://www.instagram.com/rotaractclubtrento/" aria-label="Instagram">
-                <img src="../media/homepage/icon_instagram.svg" alt="Instagram">
-            </a>
-            <a href="https://www.facebook.com/rotaracttrento/?locale=it_IT" aria-label="Facebook">
-                <img src="../media/homepage/icon_facebook.svg" alt="Facebook">
-            </a>
-            <!-- EMAIL -->
-            <a href="mailto:info@iltuodominio.it" aria-label="Email">
-                <img src="../media/homepage/icon_mail.svg" alt="Email">
-            </a>
-        </div>
-    </footer>
+    <!-- FOOTER dinamico -->
+    <div id="footer-container"></div>
 
-    <!-- SCRIPT per resettare il form dopo invio -->
+    <!-- JS partials + form reset -->
+    <script src="../javascript/partials.js" defer></script>
     <script>
+        // Reset form dopo invio
         const urlParams = new URLSearchParams(window.location.search);
         if (urlParams.get('status') === 'success') {
             const form = document.getElementById('contactForm');
             if (form) form.reset();
         }
-
-        // Toggle menu mobile
-        const menuToggle = document.getElementById('mobile-menu');
-        const navLinks = document.getElementById('main-nav');
-        menuToggle.addEventListener('click', () => {
-            const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
-            menuToggle.setAttribute('aria-expanded', !expanded);
-            navLinks.classList.toggle('active');
-        });
     </script>
-
 </body>
 </html>

@@ -2,15 +2,11 @@
    ROTARACT TRENTO CHI SIAMO
    ========================= */
 
-/* :root - variabili CSS globali per colori riutilizzabili */
+/* Variabili globali */
 :root {
-    /* Colore principale del brand */
     --rotaract-pink: #E2457C;
-    /* Colore testi scuri */
     --dark: #040F0F;
-    /* Colore di sfondo chiaro */
     --white: #FCFFFC;
-    /* Colore grigio chiaro per card/fondi secondari */
     --light-gray: #F4F4F4;
 }
 
@@ -30,7 +26,7 @@ body {
 }
 
 /* =========================
-   NAVBAR MIGLIORATA
+   NAVBAR
    ========================= */
 .navbar {
     position: fixed;
@@ -38,18 +34,18 @@ body {
     width: 100%;
     height: 75px;
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
     background: rgba(252, 255, 252, 0.95);
     backdrop-filter: blur(12px);
     border-bottom: 2px solid var(--rotaract-pink);
     padding: 0 6%;
     z-index: 1000;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
     transition: background 0.3s, box-shadow 0.3s;
 }
 
-/* LOGO */
+/* Logo */
 .logo {
     display: flex;
     align-items: center;
@@ -62,9 +58,7 @@ body {
     transition: transform 0.3s ease;
 }
 
-.logo img:hover {
-    transform: scale(1.05);
-}
+.logo img:hover { transform: scale(1.05); }
 
 .logo h1 {
     font-size: 1.6rem;
@@ -73,7 +67,7 @@ body {
     letter-spacing: 0.5px;
 }
 
-/* NAV LINKS */
+/* Nav Links */
 .nav-links {
     display: flex;
     align-items: center;
@@ -101,16 +95,12 @@ body {
 }
 
 .nav-links a:hover::after,
-.nav-links a.active::after {
-    width: 100%;
-}
+.nav-links a.active::after { width: 100%; }
 
 .nav-links a:hover,
-.nav-links a.active {
-    color: var(--rotaract-pink);
-}
+.nav-links a.active { color: var(--rotaract-pink); }
 
-/* MOBILE MENU */
+/* Mobile Menu */
 .menu-toggle {
     display: none;
     font-size: 2rem;
@@ -121,12 +111,10 @@ body {
     transition: transform 0.3s ease;
 }
 
-.menu-toggle:hover {
-    transform: rotate(90deg);
-}
+.menu-toggle:hover { transform: rotate(90deg); }
 
-/* RESPONSIVE MENU */
-@media (max-width: 900px) {
+/* Responsive */
+@media (max-width:900px) {
     .nav-links {
         display: none;
         flex-direction: column;
@@ -137,77 +125,57 @@ body {
         width: 100%;
         background-color: rgba(252, 255, 252, 0.97);
         border-top: 2px solid var(--rotaract-pink);
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 6px 20px rgba(0,0,0,0.1);
         padding: 20px 0;
         animation: fadeIn 0.3s ease forwards;
     }
 
-    .nav-links.active {
-        display: flex;
-    }
-
-    .menu-toggle {
-        display: block;
-    }
+    .nav-links.active { display: flex; }
+    .menu-toggle { display: block; }
 }
 
-/* Animazione apertura menu mobile */
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 /* =========================
-   HERO, ABOUT, MEMBERS, PROJECTS (originale)
+   HERO
    ========================= */
-
-/* body > main padding-top già impostato per navbar */
 body > main { padding-top: 80px; }
 
-.hero {
+.hero, .hero-internal {
     position: relative;
-    height: 100vh;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     text-align: center;
     color: var(--white);
     overflow: hidden;
 }
 
-.background-video {
+.hero { height: 100vh; }
+.hero-internal { height: 50vh; min-height: 300px; }
+
+.hero-content, .hero-internal .hero-content { padding: 20px; }
+.hero-content { max-width: 700px; }
+.hero-internal .hero-content { max-width: 900px; }
+
+.hero-content h2 { font-size: 3rem; margin-bottom: 20px; color: var(--white); }
+.hero-internal .hero-content h2 { font-size: 2rem; }
+
+.hero-content p { font-size: 1.2rem; margin-bottom: 30px; }
+
+.hero-internal .hero-overlay {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    inset: 0;
+    background-image: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url('../media/homepage/team-pic.jpg');
+    background-size: cover;
+    background-position: center;
     z-index: -1;
-    filter: brightness(0.6);
 }
 
-.hero-content {
-    max-width: 700px;
-    padding: 20px;
-}
-
-.hero-content h2 {
-    font-size: 3rem;
-    margin-bottom: 20px;
-    color: var(--white);
-}
-
-.hero-content p {
-    font-size: 1.2rem;
-    margin-bottom: 30px;
-}
-
+/* Buttons */
 .btn-primary {
     background-color: var(--rotaract-pink);
     color: var(--white);
@@ -219,34 +187,7 @@ body > main { padding-top: 80px; }
     top: 7vh;
 }
 
-.btn-primary:hover {
-    background-color: #c63a6e;
-}
-
-.about, .calendar-preview {
-    padding: 80px 10%;
-    text-align: center;
-}
-
-.about h3, .calendar-preview h3 {
-    color: var(--rotaract-pink);
-    margin-bottom: 20px;
-    font-size: 2rem;
-}
-
-.about p {
-    max-width: 700px;
-    margin: 0 auto;
-    line-height: 1.6;
-}
-
-.calendar-preview .event-card {
-    background-color: var(--light-gray);
-    padding: 20px;
-    border-radius: 10px;
-    margin: 15px auto;
-    max-width: 600px;
-}
+.btn-primary:hover { background-color: #c63a6e; }
 
 .btn-secondary {
     display: inline-block;
@@ -259,90 +200,56 @@ body > main { padding-top: 80px; }
     transition: background 0.3s, color 0.3s;
 }
 
-.btn-secondary:hover {
-    background-color: var(--rotaract-pink);
-    color: var(--white);
-}
+.btn-secondary:hover { background-color: var(--rotaract-pink); color: var(--white); }
 
-.hero-internal {
-    position: relative;
-    height:50vh;
-    min-height:300px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    color:var(--white);
-    overflow:hidden;
-    background: none;
-}
-
-.hero-internal .hero-overlay{
-    position:absolute;
-    inset:0;
-    background-image: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url('../media/homepage/team-pic.jpg');
-    background-size:cover;
-    background-position:center;
-    z-index: -1;
-}
-
-.hero-internal .hero-content{ max-width:900px; padding:20px; }
-
-.members-grid{
-    display:grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
-    gap:20px;
-    max-width:1200px;
-    margin:20px auto;
-    padding:0 10px;
-}
-
-.member-card{
-    background-color:var(--white);
-    padding:20px;
-    border-radius:10px;
-    text-align:left;
-    box-shadow:0 2px 6px rgba(0,0,0,0.06);
-    display:flex;
-    flex-direction:column;
-    gap:8px;
-}
-
-.member-card img{ width:100%; height:180px; object-fit:cover; border-radius:8px; }
-.member-card .role{ margin:6px 0; font-weight:600; }
-.member-card .member-desc{ color:#555; line-height:1.4; font-size:.95rem; }
-.btn-consiglio{ display:inline-block; margin:20px auto; }
-.projects-grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap:16px; margin-top:16px; }
-.project-card{ max-width:none; }
+.btn-consiglio { display: inline-block; margin: 20px auto; }
 
 /* =========================
-   CONTATTI (originale)
+   ABOUT / MEMBERS / PROJECTS
    ========================= */
+.about, .calendar-preview { padding: 80px 10%; text-align: center; }
 
+.about h3, .calendar-preview h3 { color: var(--rotaract-pink); margin-bottom: 20px; font-size: 2rem; }
+
+.about p { max-width: 700px; margin: 0 auto; line-height: 1.6; }
+
+.members-grid, .projects-grid {
+    display: grid;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 10px;
+}
+
+.members-grid { grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); }
+.projects-grid { grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 16px; margin-top: 16px; }
+
+.member-card, .event-card {
+    background-color: var(--white);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.member-card img { width: 100%; height: 180px; object-fit: cover; border-radius: 8px; }
+.member-card .role { margin: 6px 0; font-weight: 600; }
+.member-card .member-desc { color: #555; line-height: 1.4; font-size: .95rem; }
+.project-card { max-width: none; }
+
+/* =========================
+   CONTATTI
+   ========================= */
 .contact-section {
     padding: 80px 5%;
     min-height: calc(100vh - 75px - 100px);
     background-color: var(--light-gray);
 }
 
-.contact-section .container {
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.contact-section h2 {
-    text-align: center;
-    color: var(--rotaract-pink);
-    font-size: 2.5rem;
-    margin-bottom: 10px;
-}
-
-.contact-section .subtitle {
-    text-align: center;
-    font-size: 1.1rem;
-    margin-bottom: 40px;
-    color: var(--dark);
-}
+.contact-section h2 { text-align: center; color: var(--rotaract-pink); font-size: 2.5rem; margin-bottom: 10px; }
+.contact-section .subtitle { text-align: center; font-size: 1.1rem; margin-bottom: 40px; color: var(--dark); }
 
 .contact-grid {
     display: grid;
@@ -351,87 +258,36 @@ body > main { padding-top: 80px; }
     background-color: var(--white);
     padding: 30px;
     border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
 }
 
 /* FORM */
-.contact-form-container h3 {
-    color: var(--dark);
-    margin-bottom: 20px;
-    font-size: 1.5rem;
-    border-bottom: 2px solid var(--light-gray);
-    padding-bottom: 10px;
-}
+.contact-form-container h3 { color: var(--dark); margin-bottom: 20px; font-size: 1.5rem; border-bottom: 2px solid var(--light-gray); padding-bottom: 10px; }
 
-.form-group {
-    margin-bottom: 20px;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 500;
-}
-
-.form-group input,
-.form-group textarea {
+.form-group { margin-bottom: 20px; }
+.form-group label { display: block; margin-bottom: 8px; font-weight: 500; }
+.form-group input, .form-group textarea {
     width: 100%;
     padding: 12px;
-    border: 1px solid var(--medium-gray);
+    border: 1px solid #ccc;
     border-radius: 5px;
     font-family: "Poppins", sans-serif;
     font-size: 1rem;
     transition: border-color 0.3s;
 }
-
-.form-group input:focus,
-.form-group textarea:focus {
-    border-color: var(--rotaract-pink);
-    outline: none;
-}
-
-.contact-form .btn-primary {
-    width: 100%;
-    margin-top: 10px;
-}
+.form-group input:focus, .form-group textarea:focus { border-color: var(--rotaract-pink); outline: none; }
+.contact-form .btn-primary { width: 100%; margin-top: 10px; }
 
 /* CONTACT INFO */
-.contact-info {
-    padding: 20px;
-    background-color: var(--light-gray);
-    border-radius: 8px;
-}
-
-.contact-info h3 {
-    color: var(--rotaract-pink);
-    margin-bottom: 25px;
-    font-size: 1.5rem;
-}
-
-.info-block {
-    margin-bottom: 25px;
-    padding-bottom: 15px;
-    border-bottom: 1px dashed var(--medium-gray);
-}
-
-.info-block:last-of-type {
-    border-bottom: none;
-    margin-bottom: 0;
-}
-
-.info-block h4 {
-    color: var(--dark);
-    font-weight: 700;
-    margin-bottom: 5px;
-}
-
-.info-block p {
-    font-size: 1rem;
-    line-height: 1.4;
-}
+.contact-info { padding: 20px; background-color: var(--light-gray); border-radius: 8px; }
+.contact-info h3 { color: var(--rotaract-pink); margin-bottom: 25px; font-size: 1.5rem; }
+.info-block { margin-bottom: 25px; padding-bottom: 15px; border-bottom: 1px dashed #ccc; }
+.info-block:last-of-type { border-bottom: none; margin-bottom: 0; }
+.info-block h4 { color: var(--dark); font-weight: 700; margin-bottom: 5px; }
+.info-block p { font-size: 1rem; line-height: 1.4; }
 
 /* =========================
-   FOOTER MIGLIORATO
+   FOOTER
    ========================= */
 .footer {
     background-color: var(--dark);
@@ -456,7 +312,7 @@ body > main { padding-top: 80px; }
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(255, 255, 255, 0.08);
+    background-color: rgba(255,255,255,0.08);
     border-radius: 50%;
     width: 48px;
     height: 48px;
@@ -470,26 +326,15 @@ body > main { padding-top: 80px; }
     transition: transform 0.3s ease;
 }
 
-.footer .socials a:hover {
-    background-color: var(--rotaract-pink);
-    transform: translateY(-3px);
-}
+.footer .socials a:hover { background-color: var(--rotaract-pink); transform: translateY(-3px); }
+.footer .socials a:hover img { transform: scale(1.15); }
 
-.footer .socials a:hover img {
-    transform: scale(1.15);
-}
-
-.footer p {
-    margin: 0;
-    opacity: 0.85;
-    letter-spacing: 0.3px;
-}
+.footer p { margin: 0; opacity: 0.85; letter-spacing: 0.3px; }
 
 /* =========================
    RESPONSIVE
    ========================= */
 @media (max-width:900px){
-    .hero-internal{ height:40vh; }
-    .hero-internal .hero-content h2{ font-size:2rem; }
-    .members-grid{ padding:0 16px; }
+    .hero-internal { height: 40vh; }
+    .members-grid { padding: 0 16px; }
 }

@@ -1,20 +1,8 @@
-/* =========================
-    ROTARACT TRENTO - STILI COMUNI
-    (Navbar, Footer, Reset)
-    ========================= */
-
-/* :root - variabili CSS globali per colori riutilizzabili */
 :root {
-    /* Colore principale del brand */
     --rotaract-pink: #E2457C;
-    /* Colore testi scuri */
     --dark: #040F0F;
-    /* Colore di sfondo chiaro */
     --white: #FCFFFC;
-    /* Colore grigio chiaro per card/fondi secondari */
     --light-gray: #F4F4F4;
-    /* Colore per bordi del calendario */
-    --border: #ddd;
 }
 
 /* RESET */
@@ -24,64 +12,81 @@
     box-sizing: border-box;
 }
 
-/* body: impostazioni tipografiche e sfondo generali */
 body {
     font-family: "Poppins", sans-serif;
     color: var(--dark);
     background-color: var(--white);
-    overflow-x: hidden;
-    /* Fa sì che il body si prenda almeno tutta l'altezza dello schermo */
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
 }
 
-/* NAVBAR (Stile unificato dall'ultimo style_home.css) */
+/* =========================
+   NAVBAR
+========================= */
 .navbar {
     position: fixed;
     top: 0;
     width: 100%;
-    height: 100px; 
+    height: 75px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: var(--white);
+    background: rgba(252, 255, 252, 0.95);
+    backdrop-filter: blur(10px);
     border-bottom: 2px solid var(--rotaract-pink);
-    padding: 0 5%;
+    padding: 0 6%;
     z-index: 1000;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
 }
 
 .logo {
     display: flex;
     align-items: center;
-    gap: 15px; /* Leggera riduzione per mobile */
+    gap: 12px;
 }
 
 .logo img {
-    height: 70px; 
+    height: 110px;
     width: auto;
 }
 
 .logo h1 {
-    font-size: 1.5rem;
-    font-weight: 600;
+    font-size: 1.6rem;
+    font-weight: 700;
     color: var(--dark);
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 25px;
 }
 
 .nav-links a {
+    position: relative;
     text-decoration: none;
     color: var(--dark);
-    margin: 0 15px;
     font-weight: 500;
-    transition: color 0.3s;
+    padding: 8px 0;
 }
 
-.nav-links a:hover,
-.nav-links a.active {
+.nav-links a::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background-color: var(--rotaract-pink);
+    transition: width 0.3s ease;
+}
+
+.nav-links a.active::after {
+    width: 100%;
+}
+
+.nav-links a:hover {
     color: var(--rotaract-pink);
 }
 
-/* Mobile menu: icona hamburger */
 .menu-toggle {
     display: none;
     font-size: 2rem;
@@ -89,76 +94,59 @@ body {
     cursor: pointer;
 }
 
-/* FOOTER (Stile unificato dall'ultimo style_home.css) */
-.footer {
-    background-color: var(--dark);
-    color: var(--white);
-    text-align: center;
-    padding: 30px 0;
-    /* Fa sì che il footer stia in fondo se la pagina è corta */
-    margin-top: auto; 
-    width: 100%;
-}
-
-.footer .socials img {
-    height: 25px;
-    width: 25px;
-    margin: 15px 15px;
-    filter: brightness(0) invert(1);
-    transition: transform 0.3s;
-}
-
-.footer .socials img:hover {
-    transform: scale(1.1);
-}
-
-
-/* RESPONSIVE (Spostato in common perché riguarda la navbar) */
 @media (max-width: 900px) {
     .nav-links {
         display: none;
         flex-direction: column;
-        background-color: var(--white);
         position: absolute;
-        top: 100px; /* Allineato alla nuova altezza navbar di 100px */
+        top: 75px;
         right: 0;
         width: 100%;
+        background-color: rgba(252,255,252,0.97);
         border-top: 2px solid var(--rotaract-pink);
+        padding: 20px 0;
     }
-
-    /* Stile per i link singoli nel menu mobile */
-    .nav-links a {
-        padding: 15px 0; /* Aggiunge padding verticale per cliccare meglio */
-        text-align: center;
-        border-bottom: 1px solid var(--light-gray); /* Separa i link */
-    }
-
-    .nav-links a:last-child {
-        border-bottom: none; /* Rimuove l'ultimo bordo */
-    }
-
-    .nav-links.show {
-        display: flex;
-    }
-
-    .menu-toggle {
-        display: block;
-    }
-    
-    .logo h1 {
-        font-size: 1.2rem; /* Riduci il titolo su mobile */
-    }
-
-    .logo img {
-        height: 60px; /* Riduci leggermente il logo su mobile */
-    }
-
-    .navbar {
-        height: 90px; /* Riduci l'altezza della navbar su mobile */
-    }
-
-    .nav-links {
-        top: 90px; /* Allinea il menu mobile alla navbar da 90px */
-    }
+    .nav-links.active { display: flex; }
+    .menu-toggle { display: block; }
 }
 
+/* =========================
+   FOOTER
+========================= */
+.footer {
+    background-color: var(--dark);
+    color: var(--white);
+    text-align: center;
+    padding: 50px 0 35px;
+    font-size: 0.95rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+}
+
+.footer .socials {
+    display: flex;
+    gap: 30px;
+}
+
+.footer .socials a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255,255,255,0.08);
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    transition: all 0.3s ease;
+}
+
+.footer .socials a img {
+    height: 24px;
+    width: 24px;
+    filter: brightness(0) invert(1);
+}
+
+.footer .socials a:hover {
+    background-color: var(--rotaract-pink);
+}

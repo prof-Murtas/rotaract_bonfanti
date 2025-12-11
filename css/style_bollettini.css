@@ -1,0 +1,90 @@
+/* style_bollettini.css */
+.bollettini-container {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    max-width: 900px;
+    margin: 20px auto 0;
+    padding: 0 10px;
+}
+
+.bollettino-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    background-color: var(--light-gray);
+    padding: 14px 18px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+}
+
+.bollettino-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    max-width: 70%;
+}
+
+.bollettino-meta h4 {
+    margin: 0;
+    color: var(--dark);
+    font-size: 1.05rem;
+}
+
+.bollettino-meta p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #444;
+}
+
+.bollettino-actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.bollettino-actions a {
+    text-decoration: none;
+    border-radius: 8px;
+    padding: 8px 12px;
+    border: 2px solid var(--rotaract-pink);
+    color: var(--rotaract-pink);
+    transition: all .15s ease;
+}
+
+.bollettino-actions a:hover {
+    background-color: var(--rotaract-pink);
+    color: var(--white);
+}
+
+.empty-placeholder {
+    text-align: center;
+    color: #666;
+    padding: 18px;
+}
+
+/* HERO specifico bollettini */
+.hero {
+    height: auto;
+    padding: 150px 10% 60px;
+    background-color: var(--light-gray);
+    color: var(--dark);
+}
+
+.hero-content h2 {
+    color: var(--rotaract-pink);
+}
+
+.hero-content p {
+    color: var(--dark);
+}
+
+.about,
+.calendar-preview {
+    padding: 60px 10% 50px;
+}
+
+.about + .calendar-preview {
+    padding-top: 40px;
+}
